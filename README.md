@@ -1,4 +1,9 @@
+
+
 # Topics1 - Jenkins 持续集成实战
+
+@colynn 
+
 ## 目录
 1. 前置篇 - 定制镜像jnlp、kaniko、kubectl等；
 2. Jenkins + Kubernetes CI/CD 解决方案实战；
