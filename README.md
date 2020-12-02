@@ -29,4 +29,8 @@
 * [install kubectl](https://v1-16.docs.kubernetes.io/docs/tasks/tools/install-kubectl/)
 
 
-# Topics2. Jenkins + Kubernetes CI/CD 解决方案实战；
+# Topics2. Jenkins + Kubernetes CI/CD 解决方案实战
+
+## 1. 环境准备
+* jenkins 
+1. jenkin
