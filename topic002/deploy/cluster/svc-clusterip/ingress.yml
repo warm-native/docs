@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: jenkins-ingress
+  namespace: devops
+spec:
+  rules:
+  # TODO: xxx.com 需要修改为你使用的域名
+  - host: xxx.com 
+    http:
+      paths:
+      - backend:
+          serviceName: jenkins-service
+          servicePort: 8080
+        path: /
