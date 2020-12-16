@@ -1,4 +1,4 @@
-images/*.png
+assets/images/*.png
 
 *.psd
 *.mov
