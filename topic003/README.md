@@ -2,6 +2,8 @@
 
 ## 前置条件
 1. jenkins 
+
+ https://www.jenkins.io/doc/book/using/
  
 ## 为什么需要 pipeline
 
