@@ -1,5 +1,8 @@
 # 如何写好 Jenkinsfile | Jenkins Pipeline
 
+## 前置条件
+1. jenkins 
+ 
 ## 为什么需要 pipeline
 
 ## What is Jenkinsfile
