@@ -29,6 +29,8 @@
 * Stage
 * Step
 
+
+
 `Pipeline` 下支持 `Parallel`, `Node`不支持`Parallel`
 
 
@@ -38,10 +40,10 @@
 2. Scripted Pipeline
 
 
-### Use Pipeline through API
+### 1.Use Pipeline through API
 * https://github.com/go-atomci/workflow
 
-### Use Pipeline through Blue Occean
+### 2.Use Pipeline through Blue Occean
 
 ## Jenkinsfile work with Kubernetes plugin
 
