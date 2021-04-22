@@ -73,3 +73,7 @@ __Scripted Pipeline__ offers a tremendous amount of flexibility and extensibilit
 [Kubernetes plugin for Jenkins GitHub](https://github.com/jenkinsci/kubernetes-plugin/blob/master/README.md)
 
 [Kubernetes plugin docs](https://www.jenkins.io/doc/pipeline/steps/kubernetes/#kubernetes-plugin)
+
+
+## Refer to
+1. https://www.jenkins.io/doc/book/pipeline/syntax/#declarative-pipeline
