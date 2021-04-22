@@ -36,14 +36,37 @@
 
 ## Pipeline Syntax
 
-1. Declarative Pipeline
-2. Scripted Pipeline
+### 1. Declarative Pipeline
+
+```Jenkinsfile
+pipeline {
+    /* insert Declarative Pipeline here */
+}
+```
+
+### 2. Scripted Pipeline
+
+```Jenkinsfile
+node {
+    stage('Example') {
+        if (env.BRANCH_NAME == 'master') {
+            echo 'I only execute on the master branch'
+        } else {
+            echo 'I execute elsewhere'
+        }
+    }
+}
+```
+
+### 3. Synatx Comparison
+__Scripted Pipeline__ offers a tremendous amount of flexibility and extensibility to Jenkins users. The Groovy learning-curve isn’t typically desirable for all members of a given team, so __Declarative Pipeline__ was created to offer a simpler and more opinionated syntax for authoring Jenkins Pipeline.
 
 
-### 1.Use Pipeline through API
+### 4. Use Pipeline through API
 * https://github.com/go-atomci/workflow
 
-### 2.Use Pipeline through Blue Occean
+### 5. Use Pipeline through Blue Occean
+![image](./assets/use-pipeline-through-blueoccean.png)
 
 ## Jenkinsfile work with Kubernetes plugin
 
