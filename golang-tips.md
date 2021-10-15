@@ -21,7 +21,12 @@
   * Garbage collected
   * Built-in concurrency
   * Compile to standalone binaries
-  
+ 
+ 
+## 书籍推荐
+1. https://github.com/unknwon/the-way-to-go_ZH_CN
+2. https://golang2.eddycjy.com/posts/ch1/01-simple-flag/
+
 
 ## How to try it
 
