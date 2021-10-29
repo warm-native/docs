@@ -3,30 +3,43 @@
 [详细的配置教程](https://colynn.github.io/2019-10-22-kubernetes-ci-cd/)
 
 ## 1. 环境准备
-* jenkins
-    * 主机形式或是集群内安装；
-    * kubernetes/git 插件
+### 1.1 jenkins部署
+* 主机形式或docker或是集群内安装；
+* kubernetes/git 插件
 
-* 基础镜像准备
-    * jnlp-agent
-    * maven
-    * kaniko
+```sh
+# start jenkins docker
+$ docker run -d -p 8091:8080 -p50000:50000 --name jenkins -v $(pwd)/data:/var/jenkins_home colynn/jenkins:2.277.1-lts-alpine
+```
 
+### 1.2 基础镜像准备
+    * `colynn/jenkins-jnlp-agent:latest`：　Jenkins jnlp agent, 还有另外一种ssh agent, 但还是推荐使用`jnlp-agent`
+    * `colynn/kaniko-executor:debug`: 用于镜像制作及镜像推送 
+> jnlp-agnet的基础镜像是必须的，对于其他的镜像可以根据需要定义`Pod`的`template`
 
 ## 2. jenkins Auth
+> 创建jenkins连接至kubernetes的auh信息
 
-1. kubernetes auth
+### 2.1 创建 service account
+
+> 请根据`jenkins`部署在k8s的集群内或外选择[`cluster`](https://github.com/warm-native/docs/tree/master/topic002/deploy/cluster) or [`outcluster`](https://github.com/warm-native/docs/tree/master/topic002/deploy/outcluster)
+
+### 2.2 配置 Jenkins Credentials
+
+1. 获取 service account auth信息
 ```sh
 $ kubectl -n devops describe serviceaccount jenkins-admin
 $ kubectl -n devops describe secret [jenkins-admin-token-name]
 ```
+2. 创建 __Secret text__ 类型的Credentials
 
-> 注意： 使用`Secret text`类型
+3. git auth
+> 根据需要进行配置，如果不需要检出代码，可以不配置
 
-2. git auth
+## 3. Jenkins add kubernetes cloud
 
 
-## 3. jenkins agent (提供agent的3种形式)
+## 4. jenkins agent (提供agent的3种形式)
 1. yaml in declarative pipeline
 
 > 示例链接：[>yaml in declarative pipeline](https://github.com/jenkinsci/kubernetes-plugin#declarative-pipeline)
@@ -86,6 +99,6 @@ __注意事项__:
 ## 
 jenkins as code
 
-## 4. 拓展
+## 5. 拓展
 
 1. 中间产物 构建目录
