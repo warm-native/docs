@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dockerv1-deployment
+  labels:
+    app: dockerv1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dockerv1
+  template:
+    metadata:
+      labels:
+        app: dockerv1
+    spec:
+      containers:
+      - name: dockerv1
+        image: colynn/signal:dockerv1
+        ports:
+        - containerPort: 8080
+        command:
+          - /bin/sh
+          - -c
+          - /app/execsignal

@@ -1,20 +1,18 @@
 # 如何写好 Jenkinsfile | Jenkins Pipeline
 
 ![Wechat](https://img.shields.io/badge/-colynnliu-%2307C160?style=flat&logo=Wechat&logoColor=white)
-[![Linkedin](https://img.shields.io/badge/-LinkedIn-%230A66C2?style=flat&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/colynn/)
 [![Twitter](https://img.shields.io/badge/-Twitter-%231DA1F2?style=flat&logo=Twitter&logoColor=white)](https://twitter.com/colynnliu)
-<img src="https://visitor-badge.laobi.icu/badge?page_id=colynn.colynn" alt="visitor badge"/> 
 
 ## 前置条件
+
 * jenkins
 * jenkins plugins (pipeline/blue occean)
 
- https://www.jenkins.io/doc/book/using/
- 
+ <https://www.jenkins.io/doc/book/using/>
+
 ## What is Pipeline / Jenkinsfile
 
 ![image](./assets/pipeline.png)
-
 
 ## 为什么需要 pipeline
 
@@ -29,10 +27,7 @@
 * Stage
 * Step
 
-
-
 `Pipeline` 下支持 `Parallel`, `Node`不支持`Parallel`
-
 
 ## Pipeline Syntax
 
@@ -59,13 +54,15 @@ node {
 ```
 
 ### 3. Synatx Comparison
+
 __Scripted Pipeline__ offers a tremendous amount of flexibility and extensibility to Jenkins users. The Groovy learning-curve isn’t typically desirable for all members of a given team, so __Declarative Pipeline__ was created to offer a simpler and more opinionated syntax for authoring Jenkins Pipeline.
 
-
 ### 4. Use Pipeline through API
-* https://github.com/go-atomci/workflow
+
+* <https://github.com/go-atomci/workflow>
 
 ### 5. Use Pipeline through Blue Occean
+
 ![image](./assets/use-pipeline-through-blueoccean.png)
 
 ## Jenkinsfile work with Kubernetes plugin
@@ -74,6 +71,6 @@ __Scripted Pipeline__ offers a tremendous amount of flexibility and extensibilit
 
 [Kubernetes plugin docs](https://www.jenkins.io/doc/pipeline/steps/kubernetes/#kubernetes-plugin)
 
-
 ## Refer to
-1. https://www.jenkins.io/doc/book/pipeline/syntax/#declarative-pipeline
+
+1. <https://www.jenkins.io/doc/book/pipeline/syntax/#declarative-pipeline>

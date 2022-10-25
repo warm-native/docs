@@ -1,0 +1,12 @@
+FROM colynn/ops-debug
+
+ARG WORKDIR=/app
+
+# method1
+RUN mkdir $WORKDIR
+
+# method2
+RUN ["mkdir", "$WORKDIR"]
+
+# method3
+RUN ["sh", "-c", "mkdir $WORKDIR"]

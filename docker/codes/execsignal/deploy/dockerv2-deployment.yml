@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dockerv2-deployment
+  labels:
+    app: dockerv2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dockerv2
+  template:
+    metadata:
+      labels:
+        app: dockerv2
+    spec:
+      containers:
+      - name: dockerv2
+        image: colynn/signal:dockerv2
+        ports:
+        - containerPort: 8080

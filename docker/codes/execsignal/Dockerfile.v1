@@ -1,0 +1,22 @@
+FROM golang:1.15-buster AS build-env
+
+ADD . /go/src/execsignal
+
+WORKDIR /go/src/execsignal
+
+RUN export GOPROXY=https://goproxy.io  CGO_ENABLED=0 && go build -o execsignal main.go  && ls
+
+# FROM alpine:3.9
+FROM ubuntu:18.04
+
+LABEL maintainer="Colynn Liu <colynn.liu@gmail.com>"
+
+WORKDIR /app
+
+COPY --from=build-env /go/src/execsignal/execsignal /app
+
+ENV PATH $PATH:/app
+
+EXPOSE 8080
+# ENTRYPOINT ./execsignal
+CMD ./execsignal

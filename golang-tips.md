@@ -2,6 +2,7 @@
 
 - [Golang Learning For Beginner](#golang-learning-for-beginner)
   - [Overview](#overview)
+  - [书籍推荐](#书籍推荐)
   - [How to try it](#how-to-try-it)
   - [How to setup develop env](#how-to-setup-develop-env)
     - [Install](#install)
@@ -13,24 +14,25 @@
   - [Resources](#resources)
   
 ## Overview
-* Strong and statically typed
-* Excellect community
-* Key features
-  * Simplicity
-  * Fast compile times
-  * Garbage collected
-  * Built-in concurrency
-  * Compile to standalone binaries
- 
- 
-## 书籍推荐
-1. https://github.com/unknwon/the-way-to-go_ZH_CN
-2. https://golang2.eddycjy.com/posts/ch1/01-simple-flag/
 
+- Strong and statically typed
+
+- Excellect community
+- Key features
+  - Simplicity
+  - Fast compile times
+  - Garbage collected
+  - Built-in concurrency
+  - Compile to standalone binaries
+
+## 书籍推荐
+
+1. <https://github.com/unknwon/the-way-to-go_ZH_CN>
+2. <https://golang2.eddycjy.com/posts/ch1/01-simple-flag/>
 
 ## How to try it
 
-https://play.golang.org/
+<https://play.golang.org/>
 
 ## How to setup develop env
 
@@ -42,29 +44,29 @@ https://play.golang.org/
 
 ### Env profile
 
-* `GOROOT` is a variable that defines where your Go SDK is located. You do not need to change this variable, unless you plan to use different Go versions.
+- `GOROOT` is a variable that defines where your Go SDK is located. You do not need to change this variable, unless you plan to use different Go versions.
 
-* `GOPATH` is a variable that defines the root of your workspace.
+- `GOPATH` is a variable that defines the root of your workspace.
 
-    * `src/`: location of Go source code (for example, .go, .c, .g, .s).
+  - `src/`: location of Go source code (for example, .go, .c, .g, .s).
 
-    * `pkg/`: location of compiled package code (for example, .a).
+  - `pkg/`: location of compiled package code (for example, .a).
   
-    * `bin/`: location of compiled executable programs built by Go.
+  - `bin/`: location of compiled executable programs built by Go.
 
 ### Go module
 
 [Go Mod 包管理 & 常见问题](https://colynn.github.io/2019-08-15-introducing_go_mod/)
 
 ### vscode plugins
-* Go
-* Bracket Pair Colorizer
-* GitLens - Git supercharged
-* indent-rainbow
 
+- Go
+
+- Bracket Pair Colorizer
+- GitLens - Git supercharged
+- indent-rainbow
 
 ## First program/module
-
 
 ## Project Layout/Advices
 
@@ -75,5 +77,5 @@ https://play.golang.org/
 
 ## Resources
 
-1. https://golang.org/doc/
-2. https://github.com/golang/go/wiki/CodeReviewComments
+1. <https://golang.org/doc/>
+2. <https://github.com/golang/go/wiki/CodeReviewComments>
