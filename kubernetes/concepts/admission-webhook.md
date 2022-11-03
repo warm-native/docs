@@ -7,6 +7,7 @@
   - [Admission controllers](#admission-controllers)
   - [Why need admission controllers](#why-need-admission-controllers)
   - [Which plugins(admission controllers) are enabled by default](#which-pluginsadmission-controllers-are-enabled-by-default)
+  - [Extending Kubernetes admission controllers with webhooks](#extending-kubernetes-admission-controllers-with-webhooks)
   - [What are admission webhooks](#what-are-admission-webhooks)
   - [Reference To](#reference-to)
 
@@ -43,11 +44,23 @@ kube-apiserver -h | grep enable-admission-plugins
 kubectl -n kube-system exec -it kube-apiserver-pod-name -- kube-apiserver -h |grep enable-admission-plugins
 ```
 
-* In the v1.20.11, the default ones are:
+- In the v1.20.11, the default ones are:
 
 ```sh
 NamespaceLifecycle, LimitRanger, ServiceAccount, TaintNodesByCondition, Priority, DefaultTolerationSeconds, DefaultStorageClass, StorageObjectInUseProtection, PersistentVolumeClaimResize, RuntimeClass, CertificateApproval, CertificateSigning, CertificateSubjectRestriction, DefaultIngressClass, MutatingAdmissionWebhook, ValidatingAdmissionWebhook, ResourceQuota
 ```
+
+## Extending Kubernetes admission controllers with webhooks
+
+All of these features we’ve been describing so far are critical to run reliable and secure services.
+
+However, as each organization has their own policies and default set of best practices, such highly specific controls may not be enough.
+
+Fortunately, Kubernetes has you covered.
+
+You can extend and customize the Kubernetes API functionality, without adding complexity to its base code, by using __webhooks__.
+
+The Kubernetes API server will call a registered webhook, which is a rather standard interface. This makes admission controllers easy to integrate with any third-party code.
 
 ## What are admission webhooks
 
