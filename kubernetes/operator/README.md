@@ -41,3 +41,7 @@ The Operator SDK is a framework that uses the controller-runtime library to make
 ### 2. read the user guides
 
 Operators can be created with the SDK using [Ansible](https://sdk.operatorframework.io/docs/building-operators/ansible/quickstart/), [Helm](https://sdk.operatorframework.io/docs/building-operators/helm/quickstart/), or [Go](https://sdk.operatorframework.io/docs/building-operators/golang/quickstart/).
+
+## Operator Sample
+
+[memcached-operator sample](./operator-sample.md)
