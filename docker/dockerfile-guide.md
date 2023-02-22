@@ -300,6 +300,7 @@ The ENTRYPOINT instruction has two forms:
 
 Tips:
 
+- Only the last `ENTRYPOINT` instruction in the `Dockerfile` will have an effect.
 - The __exec form__ is parsed as a JSON array, which means that you must use double-quotes (“) around words not single-quotes (‘)
 - 类似`RUN`/`CMD` , `ENTRYPOINT [ "echo", "$HOME" ]` will not do variable substitution on `$HOME`
 - __shell form__ You can specify a plain string for the `ENTRYPOINT` and it will execute in `/bin/sh -c`. This form will use shell processing to substitute shell environment variables, and will ignore any `CMD` or `docker run` command line arguments.
