@@ -31,10 +31,8 @@
     - [Exclude with  `.dockerignore`](#exclude-with--dockerignore)
     - [Use multi-stage builds](#use-multi-stage-builds)
     - [Don’t install unnecessary packages](#dont-install-unnecessary-packages)
-  - [分阶段构建](#分阶段构建)
   - [自定义构建镜像](#自定义构建镜像)
   - [docker镜像的生成方式](#docker镜像的生成方式)
-    - [概述](#概述-1)
     - [方式](#方式)
   - [彩蛋 - BuildKit](#彩蛋---buildkit)
 
@@ -463,8 +461,6 @@ Each instruction you create in your Dockerfile results in a new image layer bein
 
 ## docker镜像的生成方式
 
-### 概述
-
 我们所说的`Docker images` 实际上是由一个或是多个镜像层构建的。 镜像中的层是以父子关系连接在一起的，每个层代表最终容器图像的某些部分。
 
 ### 方式
@@ -477,3 +473,25 @@ Each instruction you create in your Dockerfile results in a new image layer bein
   ```sh
   export  DOCKER_BUILDKIT=1
   ```
+
+### Differences between legacy builder and BuildKit
+
+The legacy Docker Engine builder processes all stages of a Dockerfile leading up to the selected `--target`. It will build a stage even if the selected target doesn’t depend on that stage.
+
+[BuildKit(](https://docs.docker.com/build/buildkit/) only builds the stages that the target stage depends on.
+
+For example, given the following Dockerfile:
+
+```dockerfile
+# syntax=docker/dockerfile:1
+FROM ubuntu AS base
+RUN echo "base"
+
+FROM base AS stage1
+RUN echo "stage1"
+
+FROM base AS stage2
+RUN echo "stage2"
+```
+
+With [BuildKit enabled](https://docs.docker.com/build/buildkit/#getting-started), building the __stage2__ target in this Dockerfile means only _base_ and _stage2_ are processed. There is no dependency on _stage1_, so it’s skipped.
