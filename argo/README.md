@@ -20,7 +20,7 @@
 * **Artifacts**: files saved by a container
 * **Artifact Repository**: a place where **artifacts** are stored
 
-* **Executor**: the method to execute a container, e.g. Docker, PNS ([learn more](workflow-executors.md))
+* **Executor**: the method to execute a container, e.g. Docker, PNS ([learn more](https://argoproj.github.io/argo-workflows/workflow-executors/))
 
 ## Multiple Events Sources/ Trigger
 
