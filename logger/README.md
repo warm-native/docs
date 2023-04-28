@@ -40,9 +40,7 @@ The efficient indexing of log data distinguishes Loki from other logging systems
 
 So, For Loki to be __efficient and cost-effective__, we have to use labels responsibly. The next section will explore this in more detail.
 
-
 promtail 的 scrape_configs的配置规则：
-
 
 ### 日志存储方式
 
