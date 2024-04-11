@@ -474,6 +474,24 @@ Each instruction you create in your Dockerfile results in a new image layer bein
   export  DOCKER_BUILDKIT=1
   ```
 
+### 使用BuildKit的内置ARGs
+
+__BuildKit__ supports a predefined set of ARG variables with information on the platform of the node performing the build (build platform) and on the platform of the resulting image (target platform). The target platform can be specified with the --platform flag on docker build.
+
+The following ARG variables are set automatically:
+
+- `TARGETPLATFORM` - platform of the build result. Eg linux/amd64, linux/arm/v7, windows/amd64.
+- `TARGETOS` - OS component of TARGETPLATFORM
+- `TARGETARCH` - architecture component of TARGETPLATFORM
+- `TARGETVARIANT` - variant component of TARGETPLATFORM
+- `BUILDPLATFORM` - platform of the node performing the build.
+- `BUILDOS` - OS component of BUILDPLATFORM
+- `BUILDARCH` - architecture component of BUILDPLATFORM
+- `BUILDVARIANT` - variant component of BUILDPLATFORM
+
+但是上面的这些ARGs你要使用，需要先在`Dockerfile`通过ARG xx的方式声明后，再可获取至相应参数的定义， 更多信息参看[官网链接](https://docs.docker.com/reference/dockerfile/#automatic-platform-args-in-the-global-scope)
+
+
 ### Differences between legacy builder and BuildKit
 
 The legacy Docker Engine builder processes all stages of a Dockerfile leading up to the selected `--target`. It will build a stage even if the selected target doesn’t depend on that stage.
