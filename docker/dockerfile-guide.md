@@ -35,6 +35,8 @@
   - [docker镜像的生成方式](#docker镜像的生成方式)
     - [方式](#方式)
   - [彩蛋 - BuildKit](#彩蛋---buildkit)
+    - [使用BuildKit的内置ARGs](#使用buildkit的内置args)
+    - [Differences between legacy builder and BuildKit](#differences-between-legacy-builder-and-buildkit)
 
 ## 前置 - docker是什么
 
@@ -490,7 +492,6 @@ The following ARG variables are set automatically:
 - `BUILDVARIANT` - variant component of BUILDPLATFORM
 
 但是上面的这些ARGs你要使用，需要先在`Dockerfile`通过ARG xx的方式声明后，再可获取至相应参数的定义， 更多信息参看[官网链接](https://docs.docker.com/reference/dockerfile/#automatic-platform-args-in-the-global-scope)
-
 
 ### Differences between legacy builder and BuildKit
 
