@@ -1,8 +1,19 @@
 # multi-arch
 
+## 写在前面
+
+There are currently __four different ways__ that one can build locally with Docker:
+
+- The legacy builder in Docker Engine: `DOCKER_BUILDKIT=0 docker build .`
+- BuildKit in Docker Engine: `DOCKER_BUILDKIT=1 docker build .`
+- Buildx CLI plugin with the Docker driver: `docker buildx build .`
+- Buildx CLI plugin with the Container driver: `docker buildx create && docker buildx build .`
+
 ## Without Using Docker BuildX
 
 ```sh
+export DOCKER_CLI_EXPERIMENTAL=enabled
+
 docker manifest create
 
 docker manifest push
