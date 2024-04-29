@@ -81,3 +81,28 @@ So, for the user with UID=999 you can do it in your pod definition [like that](h
 securityContext:
     runAsUser: 999
 ```
+
+## 4. 问题4 - 现象是：kuberntes节点上拉取镜像被hang住，等一段时间后，镜像又可以正常被拉取下来
+
+* 问题描述
+如标题，场景是在一次性通过helm的方式部署了很多应用，因为业务服务依赖于TiDB，观察发现TiDB的服务在拉取镜像时消耗了很多时间（10mins+, 这个具体的环境有关系），但等了一段时间后
+TiDB又正常拉取到镜像并运行起来了。
+  
+* 问题分析
+
+我们知道镜像的拉取动作属于kubelet组件的职责（不知道的哥哥们可以看下，一个pod是如何在kubernetes上运行起来的详细介绍类的文章），那我们就先去看下对应节点Kubelet的日志，
+  
+* 问题原因
+  默认情况下`serializeImagePulls=true`,
+
+* 解决方案
+
+修改`serializeImagePulls=false`,
+
+* 更多
+
+```sh
+kubectl get --raw "/api/v1/nodes/<nodename>/proxy/configz" | jq
+```
+Just make sure you replace`<nodename>` with your node name. And if you don't have `jq` installed, leave out the  `| jq` part as that's only for formatting.
+  
