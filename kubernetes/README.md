@@ -85,6 +85,7 @@ securityContext:
 ## 4. 问题4 - 现象是：kuberntes节点上拉取镜像被hang住，等一段时间后，镜像又可以正常被拉取下来
 
 * 问题描述
+
 如标题，场景是在一次性通过helm的方式部署了很多应用，因为业务服务依赖于TiDB，观察发现TiDB的服务在拉取镜像时消耗了很多时间（10mins+, 这个具体的环境有关系），但等了一段时间后
 TiDB又正常拉取到镜像并运行起来了。
   
@@ -93,16 +94,25 @@ TiDB又正常拉取到镜像并运行起来了。
 我们知道镜像的拉取动作属于kubelet组件的职责（不知道的哥哥们可以看下，一个pod是如何在kubernetes上运行起来的详细介绍类的文章），那我们就先去看下对应节点Kubelet的日志，
   
 * 问题原因
-  默认情况下`serializeImagePulls=true`,
+
+默认情况下`serializeImagePulls=true`. In other words, `kubelet` sends only one image pull request to the image service at a time. Other image pull requests have to wait until the one being processed is complete.
 
 * 解决方案
 
-修改`serializeImagePulls=false`,
+修改`serializeImagePulls=false`, 
 
-* 更多
+When `serializeImagePulls` is set to `false`, the kubelet defaults to no limit on the maximum number of images being pulled at the same time. If you would like to limit the number of parallel image pulls, you can set the field `maxParallelImagePulls` in kubelet configuration. With `maxParallelImagePulls` set to `n`, only `n` images can be pulled at the same time, and any image pull beyond `n` will have to wait until at least one ongoing image pull is complete.
+
+Limiting the number parallel image pulls would prevent image pulling from consuming too much network bandwidth or disk I/O, when parallel image pulling is enabled.
+
+You can set `maxParallelImagePulls` to a positive number that is greater than or equal to 1. If you set `maxParallelImagePulls` to be greater than or equal to 2, you must set the `serializeImagePulls` to false. The kubelet will fail to start with invalid `maxParallelImagePulls` settings.
+
+* 扩展
+
+查看当前`kubelet`当前的配置参数
 
 ```sh
-kubectl get --raw "/api/v1/nodes/<nodename>/proxy/configz" | jq
+$ kubectl get --raw "/api/v1/nodes/<nodename>/proxy/configz" | jq
 ```
 Just make sure you replace`<nodename>` with your node name. And if you don't have `jq` installed, leave out the  `| jq` part as that's only for formatting.
   
