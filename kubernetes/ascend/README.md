@@ -10,6 +10,8 @@
 
 ## 环境信息
 
+### 硬件信息
+
 - Atlas 800 推理服务器（型号：3000）：  CPU: 鲲鹏920*2 / AI加速卡: 2个Atlas 300V Pro
 - KunLun G2289 GPU服务器：  CPU: 鲲鹏920*2 / AI加速卡: 2个Atlas 300I Duo
 
@@ -17,4 +19,16 @@
 
 > KunLun G2280 GPU服务器: 一是款2U2路的GPU服务器，是基于鲲鹏920与昇腾310芯片的AI推理服务器，最大可支持8个Atlas 300I/V Pro推理卡，为深度学习和推理提供强大算力，广泛应用于中心侧AI推理如智慧城市、智慧交通、智慧金融等多场景。
 
-> AI加速卡 Atlas 300V Pro产品规格：<https://support.huawei.com/enterprise/zh/doc/EDOC1100209004/e6767cc0>
+> AI加速卡 Atlas 300V Pro ([规格详情](https://support.huawei.com/enterprise/zh/doc/EDOC1100209004/e6767cc0)) 与Atlas 300I Duo卡均是配置的Ascend 310P AI处理器产品规格，对于ascend AI芯片想了解更多请点击[这里](https://zhuanlan.zhihu.com/p/662674649), 另外我们只有使用了昇腾的AI加速卡，其他的可以通过[昇腾AI产品形态说明](https://www.hiascend.com/document/detail/zh/canncommercial/700/productform/hardwaredesc_0001.html)或是[昇腾官网产品页了解](https://www.hiascend.com/zh/ecosystem/industry)
+
+### 软件信息
+
+- OS: OpenEuler 23.04
+- Kubernetes: v1.20.11
+- Docker: 26.1.2
+
+对于操作系统的磁盘分区略过，可参看[这里](https://www.hiascend.com/document/detail/zh/mindx-dl/60rc1/clusterscheduling/clusterschedulingig/dlug_installation_006.html#ZH-CN_TOPIC_0000001882784853__section02091655142310)
+
+## MindX DL组件
+
+![Image](./images/mindxdl-01.png)
