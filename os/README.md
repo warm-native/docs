@@ -7,62 +7,24 @@
 
 ## 另一个方案
 
+通过openEuler20的低版本的kernel系统来引导安装OpenEulre22的OS
+
 ## 总结
 
 POST加电自检-->BIOS(Boot Sequence)-->加载对应引导上的MBR(bootloader)-->主引导设置加载其BootLoader-->Kernel初始化-->initrd—>/etc/init进程加载/etc/inittab
 
+1. 加载 BIOS 的硬件信息与硬件自检，并依据设置取得第一个可启动的设备；
+2. 读取并执行第一个启动设备内的MBR的 boot loader；
+3. 依据 boot loader 的设置加载内核，内核会开始检测硬件与加载驱动程序；
+4. 在内核 Kernel 加载完毕后，Kernel 会主动调用 init 进程，而 init 会取得 run-level 信息；
+5. init 执行 rc.sysinit 初始化系统的操作环境（网络、时区等）；
+6. init 启动 run-level 的各个服务；
+7. 用户登录
 
-硬件的初始化，图像界面启动的初始化（如果设置了默认启动基本）  
+> 要注意init 虽然只用了一个模块展现出来，但其实在启动过程中 __init__ 占了很大的比重。
+> 下面重点阐述下内核引导及init启动的阶段
 
-主机RAID的设置初始化，device mapper 及相关的初始化，  
-
-检测根文件系统，以只读方式挂载  
-
-激活udev和selinux  
-
-设置内核参数 /etc/sysctl.conf  
-
-设置系统时钟  
-
-启用交换分区，设置主机名  
-
-加载键盘映射  
-
-激活RAID和LVM逻辑卷  
-
-挂载额外的文件系统 /etc/fstab  
-
-最后根据mingetty程序调用login让用户登录->用户登录（完成系统启动）
-
-### 第一阶段：硬件引导启动阶段
-
-```sh
-1.1 POST(Power On Self Test) 加电自检
-1.2 BIOS
-    1.2.1 初始化硬件
-    1.2.2 查找启动介质
-        HDD: 查找启动硬盘的第一个扇区（MBR/BootSector）
-1.3 MBR
-    1.3.1 Bootloader（启动装载程序）
-        GRUB
-        分区表
-
-```
-
-### 第二阶段：BootLoader 启动引导阶段
-
-```sh
-2.1 Stage1
-    执行 BootLoader 主程序(位于 MBR 前 446个字节)，它的作用是启动 Stage1.5 或 Stage2
-2.2 Stage1.5
-    Stage1.5 是桥梁，由于 Stage2 较大，存放在文件系统中，需要 Stage1.5 引导位于文件系统中的 Stage2
-2.3 Stage2
-    Stage2 是 GRUB 的核心映像
-2.4 grub.conf
-    Stage2 解析 grub.conf 配置文件，加载内核到内存中
-```
-
-### 第三阶段：内核引导阶段
+### 内核引导阶段
 
 ```sh
 3.1 /boot/kernel and Kernel parameter 
@@ -74,7 +36,7 @@ POST加电自检-->BIOS(Boot Sequence)-->加载对应引导上的MBR(bootloader)
     3.2.2 阶段二：执行真正的根文件系统中的 /sbin/init 进程
 ```
 
-### 第四阶段：Sys V init 初始化阶段
+### Sys V init 初始化阶段
 
 ```sh
 4.1 /sbin/init
@@ -102,7 +64,10 @@ POST加电自检-->BIOS(Boot Sequence)-->加载对应引导上的MBR(bootloader)
 
 1. <https://www.ruanyifeng.com/blog/2013/02/booting.html>
 2. <https://blog.51cto.com/chrinux/1192004>
+3. [Linux 的启动流程](https://www.ruanyifeng.com/blog/2013/08/linux_boot_process.html)
+4. [Linux基础：启动流程](https://wuchong.me/blog/2014/07/14/linux-boot-process/)
 
 ## 待办
 
-1. systemd/ rootfs
+1. 当前对于这块很是有很多的盲区，对于systemd / rootfs 是如果通过引导系统`systemd`调整根分区系统`initrd.img`实现os的安装的, 以及安装后与grub2.cfg配置的关系等？
+2. Custom Linux ISO
